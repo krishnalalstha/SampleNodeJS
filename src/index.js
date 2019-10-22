@@ -1,5 +1,5 @@
 import './env';
-import './db';
+import './database/db';
 
 import fs from 'fs';
 import cors from 'cors';
@@ -12,10 +12,10 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import * as Sentry from '@sentry/node';
 
-import routes from './routes';
-import json from './middlewares/json';
+import routes from './api/routes';
+import json from './api/middlewares/json';
 import logger, { logStream } from './utils/logger';
-import * as errorHandler from './middlewares/errorHandler';
+import * as errorHandler from './api/middlewares/errorHandler';
 
 // Initialize Sentry
 // https://docs.sentry.io/platforms/node/express/
@@ -70,7 +70,9 @@ app.use(errorHandler.genericErrorHandler);
 app.use(errorHandler.methodNotAllowed);
 
 app.listen(app.get('port'), app.get('host'), () => {
+  logger.info('<<===============================================================>>');
   logger.info(`Server started at http://${app.get('host')}:${app.get('port')}/api`);
+  logger.info('<<===============================================================>>');
 });
 
 // Catch unhandled rejections

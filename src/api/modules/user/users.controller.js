@@ -1,6 +1,6 @@
-import HttpStatus from 'http-status-codes';
+import HttpStatus from '../../../utils/httpStatus';
 
-import * as userService from '../services/userService';
+import * as userService from './user.service';
 
 /**
  * Get all users.

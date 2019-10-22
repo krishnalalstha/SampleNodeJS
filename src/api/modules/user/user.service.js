@@ -1,6 +1,6 @@
 import Boom from '@hapi/boom';
 
-import User from '../models/user';
+import User from './user.model';
 
 /**
  * Get all users.
